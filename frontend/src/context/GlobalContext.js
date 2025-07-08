@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+const BASE_URL = "https://moneymate-cu8b.onrender.com/api/v1/";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 
 const GlobalContext = React.createContext();
 
