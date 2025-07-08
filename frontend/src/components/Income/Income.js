@@ -10,7 +10,7 @@ function Income() {
 
      useEffect(() =>{
       getIncomes()
-  }, [])
+  }, [getIncomes])
 
     return (
         <IncomeStyled>
