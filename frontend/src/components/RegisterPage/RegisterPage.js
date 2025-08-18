@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import backgroundImg from "../../img/photo1.jpg"
+const BASE_URL = "https://moneymate-i6uu.onrender.com/api/v1";
+
+
 
 const RegisterPage = () => {
     const [name, setName] = useState('');
@@ -12,21 +15,18 @@ const RegisterPage = () => {
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/api/v1/register', { name, email, password });
-            if (response.data) {
-
-              const userName = response.data.name;
-
-                // Store the user's name in localStorage
-                localStorage.setItem('userName', userName);
-                navigate('/dashboard');
-            }
-        } catch (err) {
-            setError('Registration failed. Please try again.');
-        }
-    };
+  e.preventDefault();
+  try {
+    const response = await axios.post(`${BASE_URL}/register`, { name, email, password });
+    if (response.data) {
+      const { name } = response.data;
+      localStorage.setItem("userName", name);
+      navigate("/dashboard");
+    }
+  } catch (err) {
+    setError(err?.response?.data?.message || "Registration failed. Please try again.");
+  }
+};
 
     return (
         <RegisterStyled>

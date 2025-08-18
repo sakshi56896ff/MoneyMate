@@ -160,12 +160,12 @@
 // export const useGlobalContext = () => {
 //     return useContext(GlobalContext);
 // };
+
+
+
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-const BASE_URL = "http://localhost:5000/api/v1/";
-
-
-
+const BASE_URL = "https://moneymate-i6uu.onrender.com/api/v1/";
 
 const GlobalContext = React.createContext();
 
@@ -213,12 +213,11 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const totalIncome = () => {
-        let totalIncome = 0;
-        incomes.forEach((income) =>{
-            totalIncome = totalIncome + income.amount
-        })
-
-        return totalIncome;
+let totalExpense = 0;
+expenses.forEach((expense) => {
+    totalExpense += expense.amount;
+})
+return totalExpense;
     }
     
 

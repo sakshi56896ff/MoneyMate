@@ -118,6 +118,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import backgroundImg from "../img/photo1.jpg"
+const BASE_URL = "https://moneymate-i6uu.onrender.com/api/v1";
+
+
 
 const LoginPage = ({ setIsAuthenticated }) => {   // ✅ receive prop
     const [email, setEmail] = useState('');
@@ -125,24 +128,21 @@ const LoginPage = ({ setIsAuthenticated }) => {   // ✅ receive prop
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/api/v1/login', { email, password });
-            if (response.data) {
-                const userName = response.data.name;
-
-                // Store in localStorage
-                localStorage.setItem('userName', userName);
-                localStorage.setItem('token', 'dummy-token'); 
-                
-                setIsAuthenticated(true);   // ✅ update parent state
-                navigate('/dashboard');
-            }
-        } catch (err) {
-            setError('Invalid email or password');
-        }
-    };
+   const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(`${BASE_URL}/login`, { email, password });
+    if (response.data) {
+      const { name, token } = response.data;
+      localStorage.setItem("userName", name);
+      localStorage.setItem("token", token || "dummy-token");
+      setIsAuthenticated(true);
+      navigate("/dashboard");
+    }
+  } catch (err) {
+    setError(err?.response?.data?.message || "Invalid email or password");
+  }
+};
 
     return (
         <LoginStyled>
