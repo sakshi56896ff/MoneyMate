@@ -14,7 +14,7 @@ const RegisterPage = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/register', { name, email, password });
+            const response = await axios.post('https://moneymate-cu8b.onrender.com/api/v1/register', { name, email, password });
             if (response.data) {
 
               const userName = response.data.name;

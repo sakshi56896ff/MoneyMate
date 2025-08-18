@@ -13,7 +13,7 @@ const LoginPage = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/login', { email, password });
+            const response = await axios.post('https://moneymate-cu8b.onrender.com/api/v1/login', { email, password });
             if (response.data) {
               const userName = response.data.name;
 
