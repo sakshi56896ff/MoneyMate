@@ -3,8 +3,7 @@
 A full-stack personal finance tracker built with the MERN stack, featuring an
 in-app AI assistant powered by Google's Gemini API.
 
-🔗 **Live Demo:** [add your frontend URL here]
-⚙️ **API:** https://moneymate-i6uu.onrender.com
+⚙️ **API:** https://reearthfrontend.netlify.app/
 
 ---
 
